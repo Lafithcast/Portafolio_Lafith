@@ -18,6 +18,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
+
 
 @Data
 @Entity
@@ -43,5 +45,8 @@ public class Categoria implements Serializable {
 
     @Column(name = "activo")
     private Boolean activo;
+    
 
 }
+
+

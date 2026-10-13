@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>[[#{accion.actualizar}]]</title>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}"/>
+    </head>
+    <body class="bg-light">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-warning">
+                            <h5 class="mb-0">
+                                <i class="fas fa-pen"></i> [[#{accion.actualizar}]]
+                            </h5>
+                        </div>
+                        <form th:action="@{/categoria/guardar}" method="post"
+                              enctype="multipart/form-data" class="was-validated">
+                            <div class="card-body">
+
+                                <!-- campos ocultos: id y ruta actual de la imagen -->
+                                <input type="hidden" name="idCategoria" th:value="${categoria.idCategoria}"/>
+                                <input type="hidden" name="rutaImagen" th:value="${categoria.rutaImagen}"/>
+
+                                <div class="mb-3">
+                                    <label class="form-label">[[#{categoria.descripcion}]]</label>
+                                    <input type="text" name="descripcion" class="form-control"
+                                           th:value="${categoria.descripcion}" required="true"/>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label me-2">[[#{categoria.activo}]]</label>
+                                    <input type="checkbox" name="activo" class="form-check-input"
+                                           th:checked="${categoria.activo}"/>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">[[#{categoria.imagen}]]</label>
+                                    <input type="file" name="imagenFile" class="form-control"
+                                           onchange="mostrarImagen(this);"/>
+                                    <img id="blah" th:src="${categoria.rutaImagen}" alt="imagen de categoria"
+                                         height="200" class="mt-2"/>
+                                </div>
+                            </div>
+                            <div class="card-footer text-end">
+                                <a th:href="@{/categoria/listado}" class="btn btn-secondary">
+                                    <i class="fa-solid fa-xmark"></i> [[#{accion.cerrar}]]
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa-solid fa-floppy-disk"></i> [[#{accion.guardar}]]
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/js/rutinas.js}"></script>
+    </body>
+</html>
